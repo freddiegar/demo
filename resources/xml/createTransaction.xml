@@ -1,0 +1,42 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <createTransaction xmlns="https://test.placetopay.com/soap/pse/">
+            <auth xmlns="">
+                <login>{{login}}</login>
+                <tranKey>{{tranKey}}</tranKey>
+                <seed>{{seed}}</seed>
+                <additional/>
+            </auth>
+            <transaction xmlns="">
+                <bankCode>{{bankCode}}</bankCode>
+                <bankInterface>{{bankInterface}}</bankInterface>
+                <returnURL>{{returnURL}}</returnURL>
+                <reference>{{reference}}</reference>
+                <description>{{description}}</description>
+                <language>{{language}}</language>
+                <currency>{{currency}}</currency>
+                <totalAmount>{{totalAmount}}</totalAmount>
+                <taxAmount>{{taxAmount}}</taxAmount>
+                <devolutionBase>{{devolutionBase}}</devolutionBase>
+                <tipAmount>{{tipAmount}}</tipAmount>
+                <payer>
+                    <documentType>{{documentType}}</documentType>
+                    <document>{{document}}</document>
+                    <firstName>{{firstName}}</firstName>
+                    <lastName>{{lastName}}</lastName>
+                    <company>{{company}}</company>
+                    <emailAddress>{{emailAddress}}</emailAddress>
+                    <address>{{address}}</address>
+                    <city>{{city}}</city>
+                    <province>{{province}}</province>
+                    <country>{{country}}</country>
+                    <phone>{{phone}}</phone>
+                    <mobile>{{mobile}}</mobile>
+                </payer>
+                <ipAddress>{{ipAddress}}</ipAddress>
+                <userAgent>{{userAgent}}</userAgent>
+                <additionalData/>
+            </transaction>
+        </createTransaction>
+    </Body>
+</Envelope>

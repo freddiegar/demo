@@ -1,0 +1,13 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <getTransactionInformation xmlns="https://test.placetopay.com/soap/pse/">
+            <auth xmlns="">
+                <login>{{login}}</login>
+                <tranKey>{{tranKey}}</tranKey>
+                <seed>{{seed}}</seed>
+                <additional/>
+            </auth>
+            <transactionID xmlns="">{{transactionID}}</transactionID>
+        </getTransactionInformation>
+    </Body>
+</Envelope>

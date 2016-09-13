@@ -1,0 +1,33 @@
+{
+    "name": "freddiegar/demo",
+    "description": "Prueba para place2pay en Laravel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fredy Mendivelso",
+            "email": "fredy.mendivelso@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "source": {
+        "url": "git://github.com/freddiegar/demo.git",
+        "type": "git",
+        "reference": "stable"
+    },
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": "5.3.*"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    }
+}

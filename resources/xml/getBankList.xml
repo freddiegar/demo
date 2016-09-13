@@ -1,0 +1,12 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <getBankList xmlns="https://test.placetopay.com/soap/pse/">
+            <auth xmlns="">
+                <login>{{login}}</login>
+                <tranKey>{{tranKey}}</tranKey>
+                <seed>{{seed}}</seed>
+                <additional/>
+            </auth>
+        </getBankList>
+    </Body>
+</Envelope>
