@@ -9,11 +9,11 @@
             "email": "fredy.mendivelso@hotmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev-master",
     "source": {
         "url": "git://github.com/freddiegar/demo.git",
         "type": "git",
-        "reference": "stable"
+        "reference": "v1.0"
     },
     "require": {
         "php": ">=5.6.4",
