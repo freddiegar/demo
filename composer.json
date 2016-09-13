@@ -1,6 +1,6 @@
 {
     "name": "freddiegar/demo",
-    "description": "Prueba para place2pay en Laravel",
+    "description": "Prueba WS en Laravel",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -9,7 +9,7 @@
             "email": "fredy.mendivelso@hotmail.com"
         }
     ],
-    "minimum-stability": "dev-master",
+    "minimum-stability": "dev",
     "source": {
         "url": "git://github.com/freddiegar/demo.git",
         "type": "git",
