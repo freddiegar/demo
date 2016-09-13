@@ -10,7 +10,6 @@
         }
     ],
     "minimum-stability": "stable",
-    "prefer-stable": true,
     "source": {
         "url": "git://github.com/freddiegar/demo.git",
         "type": "git",
