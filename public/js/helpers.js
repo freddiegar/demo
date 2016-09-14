@@ -44,7 +44,8 @@ function assignErrors(error) {
                 addError('#'+key, error[key]);
             } else {
                 // El elemento no existe
-                alert(error[key]);
+                ($.type(error[key]) === "string") ? alert(error) : alert(error[key]);
+                return false;
             }
         }
     } else {

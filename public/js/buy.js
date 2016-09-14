@@ -44,7 +44,7 @@ $(function() {
                             // Abre ventana modal con interface de PSE
                             var h = $(window).height() - (($(window).height() * 20) / 100);
                             var w = $(window).width() - (($(window).width() * 20) / 100);
-                            window.open(data.bankURL[0], 'response', "height=" + h + ",width=" + w + ",status=yes,toolbar=no,menubar=no,location=yes");
+                            window.open(data.bankURL[0], 'response', "height=" + h + ",width=" + w + ",status=yes,toolbar=no,menubar=no,location=yes,scrollbars=yes");
                         } else {
                             alert('No se pudo establecer conexion con el banco, intentelo nuevamente');
                         }

@@ -39,11 +39,19 @@
                         <input type='hidden' id='personType' name='personType' />
                         <input type='hidden' id='transactionID' name='transactionID' />
                         
+                        <!-- Message Required -->
+                        <div class="row">
+                            <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
+                                (<font style="color: red;">*</font>) Campos obligatorios
+                            </div>
+                            <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
+                        </div>
                         <!-- Document Type -->
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='documentType'>Tipo documento: </label>
+                                <label class='control-label' for='documentType'>Tipo documento<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <select placeholder='Tipo documento' class='form-control' id='documentType' name='documentType' required>
@@ -57,7 +65,7 @@
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='document'>Nro documento: </label>
+                                <label class='control-label' for='document'>Nro documento<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <input placeholder='Nro documento' autocomplete="off" type='text' class='form-control' id='document' name='document' />
@@ -105,7 +113,7 @@
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='emailAddress'>Email: </label>
+                                <label class='control-label' for='emailAddress'>Email<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <input placeholder='Correo electr&oacute;nico' autocomplete="off" type='email' class='form-control' id='emailAddress' name='emailAddress'h.com" />
@@ -129,7 +137,7 @@
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='country'>Pa&iacute;s: </label>
+                                <label class='control-label' for='country'>Pa&iacute;s<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <select placeholder='Pa&iacute;s' class='form-control' id='country' name='country' required>
@@ -191,7 +199,7 @@
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='reference'># Factura: </label>
+                                <label class='control-label' for='reference'># Factura<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <input placeholder='# Factura' autocomplete="off" type='text' class='form-control' id='reference' name='reference' />
@@ -203,7 +211,7 @@
                         <div class="row">
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <label class='control-label' for='amount'>Valor a pagar: </label>
+                                <label class='control-label' for='amount'>Valor a pagar<font style="color: red;">*</font>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <input placeholder='Valor a pagar' autocomplete="off" type='text' class='form-control' id='amount' name='amount' />
@@ -250,7 +258,7 @@
                                 <div class="row">
                                     <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                                     <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                        <label class='control-label' for='bankInterface'>Tipo banca: </label>
+                                        <label class='control-label' for='bankInterface'>Tipo banca<font style="color: red;">*</font>: </label>
                                     </div>
                                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                         <select placeholder='Tipo banca' class='form-control' id='bankInterface' name='bankInterface' required>
@@ -264,7 +272,7 @@
                                 <div class="row">
                                     <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                                     <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                        <label class='control-label' for='bankCode'>Banco: </label>
+                                        <label class='control-label' for='bankCode'>Banco<font style="color: red;">*</font>: </label>
                                     </div>
                                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                         <select placeholder='Banco' class='form-control' id='bankCode' name='bankCode' required>
