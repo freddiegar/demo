@@ -17,6 +17,7 @@ function addOptionsSelect(select, data) {
  * return bool|true
  */
 function addError(select, error) {
+    $(select).parent().addClass('has-error');
     $(select).next('.help-block').empty().html(error);
     return true;
 }
@@ -27,7 +28,8 @@ function addError(select, error) {
  * return void
  */
 function removeError(select) {
-    $(select).next('.help-block').html('');
+    $(select).parent().removeClass('has-error');
+    $(select).next('.help-block').empty();
 }
 
 /**
@@ -35,7 +37,7 @@ function removeError(select) {
  * @param json Errores
  * return void
  */
-function assignErrors(error) {
+function showErrors(error) {
     if (!$.isEmptyObject(error)) {
         // JSON
         for (var key in error) {

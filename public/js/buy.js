@@ -36,7 +36,7 @@ $(function() {
                 success: function (data) {
                     if (data.error !== undefined && data.error != '') {
                         // error en la respuesta
-                        assignErrors(data.error);
+                        showErrors(data.error);
                     } else {
                         // Asigna numeor de trasaccion para realizar consulta de estado posteriormente
                         $('#transactionID').val(data.transactionID[0]);

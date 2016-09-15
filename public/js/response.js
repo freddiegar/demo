@@ -1,5 +1,35 @@
 $(function() {
-    // Consulta el estado de la transaccion
+    // Consulta el estado de la transaccion. solo si existe pagina de referencia
+    statusTransaction();
+
+    // Cerrar ventana al hacer click en cerrar
+    $("#mThanks").on('hidden.bs.modal', function(e){
+        closeWindow();
+    });
+});
+
+/**
+ * Cierra y devuelve al formulario inicial
+ */
+function closeWindow(){
+    if (window.opener) {
+        window.opener.location.href = location.href + '/../'; 
+        window.close();
+    } else {
+        location.href = location.href + '/../'; 
+    }
+}
+
+/**
+ * Consulta el estado de la transaccion
+ * 
+ */
+function statusTransaction() {
+    if (!window.opener) {
+        // Muestra ventana modal
+        closeWindow();
+        return false;
+    }
     $.ajax({
         method: 'post',
         url: location.href + '/../getTransactionInfo',
@@ -24,21 +54,4 @@ $(function() {
             console.log('Error obteniendo el estado de la transaccion');
         }
     });
-
-    // Cerrar ventana al hacer click en cerrar
-    $("#mThanks").on('hidden.bs.modal', function(e){
-        closeWindow();
-    });
-});
-
-/**
- * Cerra y devuel al formaulario inicial
- */
-function closeWindow(){
-    if (window.opener) {
-        window.opener.location.href = location.href + '/../'; 
-        window.close();
-    } else {
-        location.href = location.href + '/../'; 
-    }
 }
