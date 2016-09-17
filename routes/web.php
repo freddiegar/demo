@@ -23,52 +23,54 @@
 | });
 */
 
-/*
- | Mostrar el formulario de compra
-*/ 
 Route::get('/', function () {
-    return view('buy');
-});
-Route::get('/buy', function () {
-    return view('buy');
+    /*
+     | Controlador por defecto
+    */ 
+    return redirect('/transaction/index');
 });
 /*
  | Consultar mediante ajax los tipos de documentos disponibles.
- | Utilizado en buy.blade.php
+ | Utilizado en transaction/create.blade.php
 */ 
-Route::match(['get', 'post'], '/documentTypes', 'DocumentTypeController@get');
-/*
- | Consultar mediante ajax los paises disponibles.
- | Utilizado en buy.blade.php
-*/ 
-Route::match(['get', 'post'], '/country', 'CountryController@get');
+Route::post('/documentTypes/get', 'DocumentTypeController@get');
+
 /*
  | Consultar mediante ajax los tipos banca disponibles.
- | Utilizado en buy.blade.php
+ | Utilizado en transaction/create.blade.php
 */ 
-Route::match(['get', 'post'], '/personType', 'PersonTypeController@get');
+Route::post('/personType/get', 'PersonTypeController@get');
 /*
  | Consultar mediante ajax los bancos disponibles.
- | Utilizado en buy.blade.php
+ | Utilizado en transaction/create.blade.php
 */ 
-Route::match(['get', 'post'], '/bank', 'BankController@get');
-/*
- | Solicitar creacion de una nueva transaccion
- | Utilizado en buy.blade.php
-*/ 
-Route::match(['get', 'post'], '/getTransaction', 'TransactionController@getTransaction');
+Route::post('/bank/get', 'BankController@get');
+
+// Manejode transacciones (Sintaxis simplicafada cuando se usa --resource) 
+Route::get('/transaction/index', 'TransactionController@index');
+Route::get('/transaction/create', 'TransactionController@create');
+Route::post('/transaction/store', 'TransactionController@store');
+
+// Manejo de los bancos (Sintaxis detallada cuando se usa --resource) 
+Route::post('/country/get', 'CountryController@get');
+Route::get('/country/index', 'CountryController@index');
+Route::get('/country/create', 'CountryController@create');
+Route::post('/country/store', 'CountryController@store');
+Route::get('/country/{id}/edit', 'CountryController@edit');
+Route::put('/country/update/{id}', 'CountryController@update');
+Route::delete('/country/delete/{id}', 'CountryController@destroy');
 
 /*
  | Mostrar ventana de resultado de la operacion
- | Utilizado en response.blade.php
+ | Utilizado en transaction/response.blade.php
 */ 
-Route::any('/response', function (){
-    return view('response');
+Route::any('/transaction/response', function (){
+    return view('transaction/response');
 });
 /*
  | Solicitar el estado de una nueva transaccion
- | Utilizado en response.blade.php
+ | Utilizado en transaction/response.blade.php
 */ 
-Route::match(['get', 'post'], '/getTransactionInfo', 'TransactionController@getTransactionInfo');
+Route::match(['get', 'post'], '/transaction/status', 'TransactionController@status');
 
 

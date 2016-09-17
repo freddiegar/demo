@@ -14,9 +14,9 @@ class PersonTypeController extends Controller
      * Obtiene los tipos de banca disponibles en la tabla personTypes
      * @return json
      */
-    public function get()
+    public function get(Request $request)
     {
         $PersonType = new PersonType();
-        return json_encode($PersonType->select('id', 'name')->get());
+        return ($request->ajax()) ? json_encode($PersonType->select('id', 'name')->get()) : abort(404);
     }
 }

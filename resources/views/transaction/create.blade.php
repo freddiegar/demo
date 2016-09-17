@@ -29,10 +29,14 @@
                 <h2 class="hidden-md hidden-lg">Compra Demo</h2>
             </div>
             <div class="col-md-12">
-                <form id="buy" name="buy" method="POST" class="form-horizontal" role="form">
+                <!-- Transaction -->
+                <form id="transactionForm" name="transactionForm" method="POST" class="form-horizontal" role="form">
                     {{ csrf_field() }}
+                    <!-- Code Bank -->
                     <input type='hidden' id='bank' name='bank' />
+                    <!-- Person Type -->
                     <input type='hidden' id='personType' name='personType' />
+                    <!-- ID Transaction -->
                     <input type='hidden' id='transactionID' name='transactionID' />
                     
                     <!-- Required Message -->
@@ -54,7 +58,7 @@
                                 <select class='form-control' id='documentType' name='documentType' required>
                                     <option value=""></option>
                                 </select>
-                                <div class="help-block has-errors"></div>
+                                <div class="help-block"></div>
                             </div>
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                         </div>
@@ -68,7 +72,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
                                 <input placeholder='Nro documento' autocomplete="off" type='text' class='form-control' id='document' name='document' />
-                                <div class="help-block has-errors"></div>
+                                <div class="help-block"></div>
                             </div>
                             <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                         </div>
@@ -263,7 +267,7 @@
                     <div class="row text-center">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button type="button" id="pse" name="pse" class="btn btn-primary">PSE</button>
-                            <button type="reset" class="btn btn-warning">Restablecer</button>
+                            <button type="button" class="btn btn-warning btn-back">Cancelar</button>
                         </div>
                     </div>
                 </form>
@@ -286,7 +290,7 @@
                                             <select class='form-control' id='bankInterface' name='bankInterface' required>
                                                 <option value=""></option>
                                             </select>
-                                            <div class="help-block has-errors"></div>
+                                            <div class="help-block"></div>
                                         </div>
                                         <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                                     </div>
@@ -300,7 +304,7 @@
                                             <select class='form-control' id='bankCode' name='bankCode' required>
                                                 <option value=""></option>
                                             </select>
-                                            <div class="help-block has-errors"></div>
+                                            <div class="help-block"></div>
                                         </div>
                                         <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                                     </div>
@@ -311,7 +315,7 @@
                                     <!-- Buttons -->
                                     <div class="row text-center">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <button type="button" id="pay" name="pay" class="btn btn-primary">Pagar </button>
+                                            <button type="button" id="transactionCreate" name="transactionCreate" class="btn btn-primary">Pagar </button>
                                         </div>
                                     </div>
                                 </div>
@@ -328,9 +332,9 @@
         {{-- Javascript Files --}}
         @push('scripts')
 
-        <script src="{{ url('js/buy.js') }}" type="text/javascript"></script>
-        <script src="{{ url('js/documentType.js') }}" type="text/javascript"></script>
-        <script src="{{ url('js/country.js') }}" type="text/javascript"></script>
-        <script src="{{ url('js/personType.js') }}" type="text/javascript"></script>
-        <script src="{{ url('js/bank.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/transaction/create.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/ajax/documentType.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/ajax/country.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/ajax/personType.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/ajax/bank.js') }}" type="text/javascript"></script>
         @endpush

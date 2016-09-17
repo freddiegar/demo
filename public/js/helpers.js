@@ -1,12 +1,23 @@
+
+$(function() {
+    // Accion del boton regresar
+    $('.btn-back').click(function(e){
+        //  Devuelve a la pagina llamada anteriormente
+        back();
+    })
+})
+
 /**
  * Agrega elementos a una lista desplegable
  * @param select Selector de la lista, se puden usar clases(.), nombre, id(#), etc
  * @param data Lista de valores tipo json a agregar a la lista
  * return void
  */
-function addOptionsSelect(select, data) {
-    for (var i = 0; i < data.length; i++) {
-        $(select).append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+function addOptionSelect(select, data) {
+    if (select.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+            $(select).append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+        }
     }
 }
 
@@ -54,4 +65,34 @@ function showErrors(error) {
         // string
         alert(error);
     }
+}
+
+/**
+ * Inactiva los elementos del formulario, normalmente se usa durante los submits
+ * return void
+ */
+function inactiveElements() {
+    $('input, select, button').addClass('disabled').prop('disabled', true);
+}
+
+/**
+ * Activa los elementos del formulario, normalmente se usa durante los submits
+ * return void
+ */
+function activeElements() {
+    $('input, select, button').removeClass('disabled').prop('disabled', false);
+}
+
+/**
+ * Retorna a la pagina anterior
+ */
+function back() {
+    location.href = document.referrer;
+}
+
+/**
+ * Devuelve la URL actual
+ */
+function rootUrl() {
+    return window.location.href;
 }

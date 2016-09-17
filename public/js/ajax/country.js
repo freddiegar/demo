@@ -2,16 +2,16 @@ $(function() {
     // Cargar lista de bancos
     $.ajax({
         method: 'post',
-        url: location.href + '/../bank',
+        url: rootUrl() + '/../../country/get',
         data: {
             _token: $('input[name=_token]').val()
         },
         dataType: 'json',
         success: function (data) {
-            addOptionsSelect('#bankCode', data);
+            addOptionSelect('#country', data);
         }, 
         error: function (data) {
-            alert('No se pudo obtener la lista de Entidades Financieras, por favor intente más tarde');
+            console.log('No se cargaron los paises');
         }
     });
 });

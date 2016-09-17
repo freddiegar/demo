@@ -13,10 +13,10 @@ $(function() {
  */
 function closeWindow(){
     if (window.opener) {
-        window.opener.location.href = location.href + '/../'; 
+        window.opener.location.href = location.href.replace('/response', '/index');
         window.close();
     } else {
-        location.href = location.href + '/../'; 
+        location.href = location.href.replace('/response', '/index'); 
     }
 }
 
@@ -26,13 +26,13 @@ function closeWindow(){
  */
 function statusTransaction() {
     if (!window.opener) {
-        // Muestra ventana modal
+        // Regresa a la creacion
         closeWindow();
         return false;
     }
     $.ajax({
         method: 'post',
-        url: location.href + '/../getTransactionInfo',
+        url: rootUrl() + '/../status',
         data: {
             _token: $('input[name=_token]').val(),
             transactionID: window.opener.$('#transactionID').val()
@@ -51,7 +51,7 @@ function statusTransaction() {
             }
         }, 
         error: function (data) {
-            console.log('Error obteniendo el estado de la transaccion');
+            console.log('Error obteniendo el estado de la transacción');
         }
     });
 }

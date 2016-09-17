@@ -27,9 +27,9 @@ class BankController extends Controller
      * Devuelve el listado de bancos disponibles en la tabla banks
      * @return json
      */
-    public function get()
+    public function get(Request $request)
     {
-        return json_encode($this->Bank->select('id', 'name')->get());
+        return ($request->ajax()) ? json_encode($this->Bank->select('id', 'name')->get()) : abort(404);
     }
 
     /**

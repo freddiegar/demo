@@ -24,5 +24,5 @@
         @endsection
         @push('scripts')
 
-        <script src="{{ url('js/response.js') }}" type="text/javascript"></script>
+        <script src="{{ url('js/transaction/response.js') }}" type="text/javascript"></script>
         @endpush

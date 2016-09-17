@@ -18,20 +18,19 @@ $(function() {
     });
 
     // Validar campos y solicitar creacion de la transaccion
-    $('#pay').click(function(e){
+    $('#transactionCreate').click(function(e){
         e.preventDefault();
         if (!validatorBanks()) {
             // Asigna valores para enviar en formulario
             $('#personType').val($('#bankInterface').val());
             $('#bank').val($('#bankCode').val());
             $.ajax({
-                method: $('#buy').prop('method'),
-                url: location.href + '/../getTransaction',
-                data: $('#buy').serialize(),
+                method: $('form').prop('method'),
+                url: rootUrl() + '/../../transaction/store',
+                data: $('form').serialize(),
                 dataType: 'json',
                 beforeSend: function() {
-                    // Desactivar los campos para la modificacion
-                    $('input, select, button').addClass('disabled').prop('disabled', true);
+                    inactiveElements();
                 },
                 success: function (data) {
                     if (data.error !== undefined && data.error != '') {
@@ -46,13 +45,12 @@ $(function() {
                             var w = $(window).width() - (($(window).width() * 20) / 100);
                             window.open(data.bankURL[0], 'response', "height=" + h + ",width=" + w + ",status=yes,toolbar=no,menubar=no,location=yes,scrollbars=yes");
                         } else {
-                            alert('No se pudo establecer conexion con el banco, intentelo nuevamente');
+                            alert('No se pudo establecer conexión con el banco, intentelo nuevamente');
                         }
                     }
                 },
                 complete: function() {
-                    // Activar los campos para la modificacion
-                    $('input, select, button').removeClass('disabled').prop('disabled', false);
+                    activeElements();
                 }
             });
         }
@@ -113,12 +111,10 @@ $(function() {
         $('.help-block').html('');
 
         if (personType == '') {
-            addError('#bankInterface', 'Seleccione el tipo de banca');
-            error = true;
+            error = addError('#bankInterface', 'Seleccione el tipo de banca');
         }
         if (bank == '') {
-            addError('#bankCode', 'Seleccione el banco');
-            error = true;
+            error = addError('#bankCode', 'Seleccione el banco');
         }
 
         return error;
