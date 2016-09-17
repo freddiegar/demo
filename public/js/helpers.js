@@ -1,4 +1,3 @@
-
 $(function() {
     // Accion del boton regresar
     $('.btn-back').click(function(e){
@@ -6,6 +5,9 @@ $(function() {
         back();
     })
 })
+
+// Determina si se enfoco el primer elemento con error
+focusAsigned = false;
 
 /**
  * Agrega elementos a una lista desplegable
@@ -30,6 +32,10 @@ function addOptionSelect(select, data) {
 function addError(select, error) {
     $(select).parent().addClass('has-error');
     $(select).next('.help-block').empty().html(error);
+    if (focusAsigned === false) {
+        $(select).focus();
+        focusAsigned = true;
+    }
     return true;
 }
 
@@ -41,6 +47,7 @@ function addError(select, error) {
 function removeError(select) {
     $(select).parent().removeClass('has-error');
     $(select).next('.help-block').empty();
+    focusAsigned = false;
 }
 
 /**

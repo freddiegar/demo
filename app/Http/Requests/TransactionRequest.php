@@ -27,7 +27,7 @@ class TransactionRequest extends FormRequest
     {
         return [
             'documentType' => 'required',
-            'document' => 'required|alpha_num|max:12',
+            'document' => 'required|alpha_num|min:4|max:12',
             'firstName' => 'max:60',
             'lastName' => 'max:60',
             'company' => 'max:60',
