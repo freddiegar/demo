@@ -22,7 +22,7 @@ $(function() {
                         // error en la respuesta
                         showErrors(data.error);
                     } else {
-                        alert('Guardado correctamente');
+                        redirect('/../index', 'message=Guardado correctamente');
                     }
                 },
                 complete: function() {
@@ -50,7 +50,7 @@ $(function() {
                         // error en la respuesta
                         showErrors(data.error);
                     } else {
-                        alert('Actualizado correctamente');
+                        redirect('/../../index', 'message=Actualizado correctamente');
                     }
                 },
                 complete: function() {
@@ -79,8 +79,7 @@ $(function() {
                         // error en la respuesta
                         showErrors(data.error);
                     } else {
-                        alert('Eliminado correctamente');
-                        back();
+                        redirect('/../../index', 'message=Eliminado correctamente');
                     }
                 },
                 complete: function() {

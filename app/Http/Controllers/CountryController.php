@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests\CountryRequest;
@@ -24,8 +26,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $rows = $this->Country->paginate(2);
-        // echo '<pre>', print_r($rows, 1), '</pre>';die;
+        $rows = $this->Country->paginate();
         return view('country/index', compact('rows'));
     }
 
@@ -103,11 +104,19 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        $this->Country
-            ->where('id', $id)
-            ->delete();
-        
-        return json_encode(array());
+        $response = array();
+        try {
+            $this->Country
+                ->where('id', $id)
+                ->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $response['error'] = 'No se puede eliminar el registro, por favor consulte al administrador. Hash[' . date('Y-m-d H:i:s') .']';
+            Log::error($e->getMessage());
+        } catch (PDOException $e) {
+            $response['error'] = 'No se puede eliminar el registro, por favor consulte al administrador. Hash[' . date('Y-m-d H:i:s') .']';
+            Log::error($e->getMessage());
+        }
+        return json_encode($response);
     }
 
     /**

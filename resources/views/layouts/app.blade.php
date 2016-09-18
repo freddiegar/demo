@@ -33,6 +33,10 @@
                   </div>
                 </div>
             </nav>
+            <div id="message" name="message" class="hidden alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p id="alert" name="alert" class="text-center" />
+            </div>
 
             @yield('content')
 

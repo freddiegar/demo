@@ -1,9 +1,36 @@
 $(function() {
+    // Establece el ultimo mensaje enviado por el sistema
+    if (location.search.indexOf('message') !== -1) {
+        setMessage('success', location.search, location.search.indexOf('message') + 8);
+    }
+    // Establece el ultimo error enviado por el sistema
+    if (location.search.indexOf('error') !== -1) {
+        setMessage('danger', location.search, location.search.indexOf('error') + 6);
+    }
     // Accion del boton regresar
     $('.btn-back').click(function(e){
         //  Devuelve a la pagina llamada anteriormente
         back();
     })
+    /*
+    console.log('referrer: ' + document.referrer); 
+    console.log('origin: ' + window.location.origin); 
+    // http://localhost:81
+    console.log('href: ' + window.location.href);
+    // http://localhost:81/place2pay/public/country/index?message=Guardado%20correctamente
+    console.log('protocol: ' + window.location.protocol);
+    // http:
+    console.log('host: ' + window.location.host);
+    // localhost:81
+    console.log('hostname: ' + window.location.hostname);
+    // localhost
+    console.log('port: ' + window.location.port);
+    // 81
+    console.log('pathname: ' + window.location.pathname);
+    // /place2pay/public/country/index
+    console.log('search: ' + window.location.search);
+    // ?message=Guardado%20correctamente
+    */
 })
 
 // Determina si se enfoco el primer elemento con error
@@ -64,13 +91,13 @@ function showErrors(error) {
                 addError('#'+key, error[key]);
             } else {
                 // El elemento no existe
-                ($.type(error[key]) === "string") ? alert(error) : alert(error[key]);
+                ($.type(error[key]) === "string") ? setMessage('danger', error, 0) : setMessage('danger', error[key], 0);
                 return false;
             }
         }
     } else {
         // string
-        alert(error);
+        setMessage('danger', error, 0);
     }
 }
 
@@ -102,4 +129,48 @@ function back() {
  */
 function rootUrl() {
     return window.location.href;
+}
+
+/**
+ * Establece la URL actual
+ * @param uri
+ */
+function redirect(uri, get) {
+    var origin = window.location.origin;
+    var pathname = window.location.pathname;
+    var search = '';
+    if (document.referrer.indexOf('page') !== -1) {
+        // Extrae el paramentro de pagina para no perder la paginacion
+        posPage = document.referrer.indexOf('page');
+        posAmpersand = document.referrer.substring(posPage).indexOf('&');
+        search = (posAmpersand === -1) 
+            ? '?' + document.referrer.substring(posPage) 
+            : '?' + document.referrer.substring(posPage, posPage + posAmpersand);
+        console.log('posPage: ' + posPage);
+        console.log('posAmpersand: ' + posAmpersand);
+        console.log('search: ' + search);
+    }
+    if ($.trim(get) !== '') {
+        // Agrega otros parametros adicionales
+        if (search === '') {
+            // No hay pagina
+            search = '?';
+        } else {
+            // Hay pagina, lo concatena
+            get = '&' + get;
+        }
+
+    }
+    // console.log(origin + pathname + uri + search + get);
+    window.location.assign(origin + pathname + uri + search + get);
+}
+
+/**
+ * Establece mensajes de error
+ * @param classs
+ * @param text
+ * @param posicion
+ */
+function setMessage(classs, text, posicion) {
+    $('#message').addClass('alert-' + classs).removeClass('hidden').children('#alert').html(decodeURI(text.substring(posicion)));
 }

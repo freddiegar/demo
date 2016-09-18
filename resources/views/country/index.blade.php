@@ -50,7 +50,10 @@
                             <tr>
                                 <td>{{ $row['id'] }}</td>
                                 <td>{{ $row->name }}</td>
-                                <td><a href="{{ url('/country/' . $row['id'] . '/edit') }}"><button class="btn btn-primary">Editar</button></a></td>
+                                <td>
+                                    <a href="{{ url('/country/' . $row['id'] . '/edit') }}"><button class="btn btn-primary">Editar</button></a>
+                                    <a href="{{ url('/country/delete/' . $row['id']) }}"><button class="btn btn-danger">Eliminar</button></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
