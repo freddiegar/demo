@@ -121,14 +121,30 @@ function activeElements() {
  * Retorna a la pagina anterior
  */
 function back() {
-    location.href = document.referrer;
+    var oldUrl = document.referrer;
+    var newUrl = oldUrl;
+    if (oldUrl.indexOf('message') !== -1) {
+        posMessage = oldUrl.indexOf('message');
+        newUrl = oldUrl.substring(0, posMessage);
+    } else if (oldUrl.indexOf('message') !== -1) {
+        posMessage = oldUrl.indexOf('message');
+        newUrl = oldUrl.substring(0, posMessage);
+    }
+
+    if (document.referrer !== newUrl) {
+        location.href = newUrl;
+    } else {
+        history.back();
+    }
 }
 
 /**
  * Devuelve la URL actual
  */
-function rootUrl() {
-    return window.location.href;
+function url(url) {
+    // Si no se pasa el argumento
+    url = (url === undefined) ? '' : url;
+    return $('#baseUrl').val() + url;
 }
 
 /**
@@ -136,19 +152,18 @@ function rootUrl() {
  * @param uri
  */
 function redirect(uri, get) {
-    var origin = window.location.origin;
-    var pathname = window.location.pathname;
+    url = url();
+    get = (get === undefined) ? '' : get;
     var search = '';
     if (document.referrer.indexOf('page') !== -1) {
-        // Extrae el paramentro de pagina para no perder la paginacion
+        // Extrae el parametro de pagina para no perder la paginacion
         posPage = document.referrer.indexOf('page');
         posAmpersand = document.referrer.substring(posPage).indexOf('&');
-        search = (posAmpersand === -1) 
+        search = (posAmpersand === -1)
+            // no tiene mas parametros ademas del page
             ? '?' + document.referrer.substring(posPage) 
+            // tiene mas parametros ademas del page, por ejemplo: message, entonces lo quita
             : '?' + document.referrer.substring(posPage, posPage + posAmpersand);
-        console.log('posPage: ' + posPage);
-        console.log('posAmpersand: ' + posAmpersand);
-        console.log('search: ' + search);
     }
     if ($.trim(get) !== '') {
         // Agrega otros parametros adicionales
@@ -161,8 +176,7 @@ function redirect(uri, get) {
         }
 
     }
-    // console.log(origin + pathname + uri + search + get);
-    window.location.assign(origin + pathname + uri + search + get);
+    window.location.assign(url + uri + search + get);
 }
 
 /**
@@ -170,7 +184,17 @@ function redirect(uri, get) {
  * @param classs
  * @param text
  * @param posicion
+ * @return void
  */
 function setMessage(classs, text, posicion) {
     $('#message').addClass('alert-' + classs).removeClass('hidden').children('#alert').html(decodeURI(text.substring(posicion)));
+}
+
+/**
+ * Establece el method de envio
+ * @param method
+ * @return void
+ */
+function setMethod(method) {
+    $('input[name=_method]').val(method);
 }

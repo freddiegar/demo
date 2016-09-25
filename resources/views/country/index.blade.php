@@ -35,8 +35,12 @@
             </div>
             <div class="col-md-12">
                 @if($rows->count() == 0)
-                    <span class="text-center">No existen registros</span>
+                <span class="text-center">No existen registros</span>
                 @else
+                <form method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('POST') }}
+                </form>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -52,7 +56,7 @@
                                 <td>{{ $row->name }}</td>
                                 <td>
                                     <a href="{{ url('/country/' . $row['id'] . '/edit') }}"><button class="btn btn-primary">Editar</button></a>
-                                    <a href="{{ url('/country/delete/' . $row['id']) }}"><button class="btn btn-danger">Eliminar</button></a>
+                                    <button class="btn btn-danger countryDelete" id="{{ $row['id'] }}">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -69,4 +73,5 @@
         {{-- Javascript Files --}}
         @push('scripts')
 
+        <script src="{{ url('js/country.js') }}" type="text/javascript"></script>
         @endpush

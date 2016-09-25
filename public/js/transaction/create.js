@@ -26,7 +26,7 @@ $(function() {
             $('#bank').val($('#bankCode').val());
             $.ajax({
                 method: $('form').prop('method'),
-                url: rootUrl() + '/../../transaction/store',
+                url: url('/transaction/store'),
                 data: $('form').serialize(),
                 dataType: 'json',
                 beforeSend: function() {

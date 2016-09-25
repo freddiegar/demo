@@ -2,7 +2,7 @@ $(function() {
     // Cargar lista de tipos de banca
     $.ajax({
         method: 'post',
-        url: rootUrl() + '/../../personType/get',
+        url: url('/personType/get'),
         data: {
             _token: $('input[name=_token]').val()
         },

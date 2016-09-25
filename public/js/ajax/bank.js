@@ -2,7 +2,7 @@ $(function() {
     // Cargar lista de bancos
     $.ajax({
         method: 'post',
-        url: rootUrl() + '/../../bank/get',
+        url: url('/bank/get'),
         data: {
             _token: $('input[name=_token]').val()
         },

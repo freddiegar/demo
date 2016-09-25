@@ -2,7 +2,7 @@ $(function() {
     // Cargar lista de tipos documento
     $.ajax({
         method: 'post',
-        url: rootUrl() + '/../../documentTypes/get',
+        url: url('/documentTypes/get'),
         data: {
             _token: $('input[name=_token]').val()
         },

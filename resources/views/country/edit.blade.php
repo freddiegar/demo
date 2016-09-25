@@ -29,7 +29,18 @@
                 <h2 class="hidden-md hidden-lg">Paises</h2>
             </div>
             <div class="col-md-12">
-                <!-- Transaction -->
+                @if(!isset($row))
+                <!-- Error -->
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
+                        <a class="btn-back"><< Volver</a>
+                        <span class="text-center">No se encontro el registro</span>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
+                </div>
+                @else
+                <!-- Country -->
                 <form id="countryForm" name="countryForm" method="POST" class="form-horizontal" role="form">
                     {{ csrf_field() }}
                     
@@ -42,7 +53,7 @@
                         <div class="hidden-xs hidden-sm col-md-1 col-lg-2"></div>
                     </div>
                     <!-- Verb -->
-                    <input type='hidden' id='_method' name='_method'/>
+                    {{ method_field('POST') }}
                     <!-- ID Country -->
                     <input type='hidden' id='id' name='id' value="{{$row['id']}}" />
                     <!-- Name -->
@@ -72,6 +83,7 @@
                         </div>
                     </div>
                 </form>
+                @endif
             </div>
         @endsection
 

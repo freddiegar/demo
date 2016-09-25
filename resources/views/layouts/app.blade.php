@@ -37,6 +37,7 @@
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <p id="alert" name="alert" class="text-center" />
             </div>
+            <input type="hidden" id="baseUrl" name="baseUrl" value="{{ url('') }}">
 
             @yield('content')
 

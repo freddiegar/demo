@@ -32,7 +32,7 @@ function statusTransaction() {
     }
     $.ajax({
         method: 'post',
-        url: rootUrl() + '/../status',
+        url: url('/transaction/status'),
         data: {
             _token: $('input[name=_token]').val(),
             transactionID: window.opener.$('#transactionID').val()

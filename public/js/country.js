@@ -4,14 +4,13 @@ $(function() {
         removeError('#' + $(this).prop('id'));
     });
 
-    // Validar campos y solicitar creacion de la transaccion
+    // Validar campos y solicitar creacion
     $('#countryCreate').click(function(e){
         e.preventDefault();
         if (!validatorFields()) {
             $.ajax({
                 method: $('form').prop('method'),
-                url: $('form').prop('action'),
-                url: rootUrl() + '/../../country/store',
+                url: url('/country/store'),
                 data: $('form').serialize(),
                 dataType: 'json',
                 beforeSend: function() {
@@ -22,7 +21,7 @@ $(function() {
                         // error en la respuesta
                         showErrors(data.error);
                     } else {
-                        redirect('/../index', 'message=Guardado correctamente');
+                        redirect('/country/index', 'message=Guardado correctamente');
                     }
                 },
                 complete: function() {
@@ -32,14 +31,14 @@ $(function() {
         }
     });
 
-    // Validar campos y solicitar creacion de la transaccion
+    // Validar campos y solicitar actualizacion
     $('#countryUpdate').click(function(e){
         e.preventDefault();
         if (!validatorFields()) {
-            $('#_method').val('PUT');
+            setMethod('PUT');
             $.ajax({
                 method: $('form').prop('method'),
-                url: rootUrl() + '/../../update/' + $('#id').val(),
+                url: url('/country/update/' + $('#id').val()),
                 data: $('form').serialize(),
                 dataType: 'json',
                 beforeSend: function() {
@@ -50,7 +49,7 @@ $(function() {
                         // error en la respuesta
                         showErrors(data.error);
                     } else {
-                        redirect('/../../index', 'message=Actualizado correctamente');
+                        redirect('/country/index', 'message=Actualizado correctamente');
                     }
                 },
                 complete: function() {
@@ -61,34 +60,18 @@ $(function() {
         }
     });
 
-    // Validar campos y solicitar creacion de la transaccion
+    // Eliminacion del pais desde edicion
     $('#countryDelete').click(function(e){
         e.preventDefault();
-        if (confirm('Está seguro?')) {
-            $('#_method').val('DELETE');
-            $.ajax({
-                method: $('form').prop('method'),
-                url: rootUrl() + '/../../delete/' + $('#id').val(),
-                data: $('form').serialize(),
-                dataType: 'json',
-                beforeSend: function() {
-                    inactiveElements();
-                },
-                success: function (data) {
-                    if (data.error !== undefined && data.error != '') {
-                        // error en la respuesta
-                        showErrors(data.error);
-                    } else {
-                        redirect('/../../index', 'message=Eliminado correctamente');
-                    }
-                },
-                complete: function() {
-                    // Activar los campos para la modificacion
-                    activeElements();
-                }
-            });
-        }
+        countryDelete($('#id').val());
     });
+
+    // Eliminacion del pais desde el index
+    $('.countryDelete').click(function(e){
+        e.preventDefault();
+        countryDelete($(this).attr('id'));
+    });
+
     /**
      * Valida campos del formulario
      */
@@ -106,5 +89,36 @@ $(function() {
             error = addError('#name', 'Ingrese el nombre');
         }
         return error;
+    }
+
+    /*/
+     * Funcion unica de eliminación
+     * @param string id
+     */
+    function countryDelete(id) {
+        if (confirm('Está seguro?')) {
+            setMethod('DELETE');
+            $.ajax({
+                method: $('form').prop('method'),
+                url: url('/country/delete/' + id),
+                data: $('form').serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    inactiveElements();
+                },
+                success: function (data) {
+                    if (data.error !== undefined && data.error != '') {
+                        // error en la respuesta
+                        showErrors(data.error);
+                    } else {
+                        redirect('/country/index', 'message=Eliminado correctamente');
+                    }
+                },
+                complete: function() {
+                    // Activar los campos para la modificacion
+                    activeElements();
+                }
+            });
+        }
     }
 });
